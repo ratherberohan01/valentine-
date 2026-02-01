@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Valentine ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: fadeIn 1s;
+  position: relative;
+}
+
+.hidden { display: none; }
+
+button {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: #ddd;
+  position: absolute;
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-10vh); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.teddy {
+  font-size: 80px;
+}
+
+.big-heart {
+  font-size: 70px;
+  animation: pop 1s infinite;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<div class="card" id="step1">
+  <h2>Hey my love 💕</h2>
+  <p>I made something just for you…</p>
+  <button onclick="next()">Start 💖</button>
+</div>
+
+<div class="card hidden" id="step2">
+  <h2>Quick question 🥰</h2>
+  <p>Do you know how special you are to me?</p>
+  <button onclick="next()">Yes 😘</button>
+</div>
+
+<div class="card hidden" id="step3">
+  <h2>One last thing 🧸</h2>
+  <div class="teddy">🧸</div>
+  <p>Ready for the most important question?</p>
+  <button onclick="next()">Okay 😳</button>
+</div>
+
+<div class="card hidden" id="final">
+  <h2>Will you be my Valentine? ❤️</h2>
+  <button id="yes" onclick="yesClicked()">YES 💕</button>
+  <button id="no" onmouseover="moveNo()">NO 😤</button>
+</div>
+
+<div class="card hidden" id="result">
+  <div class="big-heart">💖</div>
+  <h2>YAYYYYY!!! 🎉</h2>
+  <p>You’re officially my Valentine 💕</p>
+  <p>I love you endlessly ❤️</p>
+</div>
+
+<script>
+let step = 1;
+
+function next() {
+  document.getElementById("step" + step).classList.add("hidden");
+  step++;
+  document.getElementById("step" + step).classList.remove("hidden");
+}
+
+function moveNo() {
+  const no = document.getElementById("no");
+  const card = document.getElementById("final");
+
+  const x = Math.random() * (card.offsetWidth - 80);
+  const y = Math.random() * (card.offsetHeight - 40);
+
+  no.style.left = x + "px";
+  no.style.top = y + "px";
+}
+
+function yesClicked() {
+  document.getElementById("final").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+}
+
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
