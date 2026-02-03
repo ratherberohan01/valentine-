@@ -2,145 +2,254 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Love ❤️</title>
+<title>For You ❤️</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(180deg, #fde2e4, #fadadd);
-  display: flex;
+  background: linear-gradient(135deg, #f7e6ec, #fdeff4);
+  font-family: "Georgia", serif;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  padding: 40px;
   justify-content: center;
   align-items: center;
-  font-family: Georgia, serif;
-  overflow: hidden;
+  text-align: center;
+}
+
+.active {
+  display: flex;
 }
 
 .card {
   background: white;
-  max-width: 520px;
+  max-width: 540px;
   width: 90%;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  padding: 42px;
+  border-radius: 22px;
+  box-shadow: 0 35px 70px rgba(0,0,0,0.25);
+  animation: fadeIn 1s ease;
+  position: relative;
+  z-index: 2;
 }
 
-h1 {
-  text-align: center;
-  font-weight: normal;
-}
-
-#letter {
-  margin-top: 20px;
-  font-size: 17px;
-  line-height: 1.8;
-  min-height: 220px;
-  white-space: pre-line;
-}
-
-.buttons {
-  margin-top: 30px;
-  text-align: center;
-  display: none;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 button {
-  padding: 12px 28px;
+  padding: 12px 32px;
   border-radius: 30px;
   border: none;
   font-size: 16px;
   cursor: pointer;
+  margin-top: 28px;
 }
 
-#yes {
-  background: #e63946;
+.next, #yes {
+  background: #d6336c;
   color: white;
 }
 
 #no {
-  background: #ddd;
+  background: #eee;
   margin-left: 15px;
   position: relative;
+}
+
+/* 🌸 FLOWER GARDEN (LILIES + ROSES) */
+.flower {
+  position: absolute;
+  font-size: 26px;
+  opacity: 0.85;
+  animation: floatUp linear infinite;
+}
+
+.layer1 { animation-duration: 14s; font-size: 28px; }
+.layer2 { animation-duration: 18s; font-size: 22px; opacity: 0.6; }
+
+@keyframes floatUp {
+  from { transform: translateY(120vh); }
+  to { transform: translateY(-140vh); }
+}
+
+/* ✉️ ENVELOPE */
+.envelope {
+  width: 280px;
+  height: 180px;
+  background: #f3c8d6;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  margin: auto;
+  overflow: hidden;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: #eab4c7;
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.envelope.open .flap {
+  transform: rotateX(160deg);
+}
+
+.envelope-text {
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.ticket {
+  display: none;
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  margin-top: 25px;
+  animation: fadeIn 1s ease;
+}
+
+/* 🎉 CELEBRATION */
+.confetti {
+  position: absolute;
+  font-size: 22px;
+  animation: fall 6s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(120vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <h1>Hiee my love ❤️</h1>
-  <div id="letter"></div>
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6b1b88f2df.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="buttons" id="question">
-    <button id="yes" onclick="yes()">Yes 💖</button>
-    <button id="no" onmouseover="move()">No</button>
+<!-- SLIDE 1 -->
+<div class="slide active" id="s1">
+  <div class="card">
+    <h2>Hi my love 🤍</h2>
+    <p>
+      I hope you’re doing well.<br><br>
+      We hang out, eat, laugh, and sometimes fight too —
+      but through everything, all I want is you.
+    </p>
+    <button class="next" onclick="next(2)">Next</button>
   </div>
 </div>
 
-<!-- Audio WITHOUT autoplay -->
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_3b4f06e5f4.mp3" type="audio/mpeg">
-</audio>
+<!-- SLIDE 2 -->
+<div class="slide" id="s2">
+  <div class="card">
+    <h2>A Little Garden for You 🌸🌹</h2>
+    <p>
+      Lilies and roses,<br>
+      soft, calm, and full of love.
+    </p>
+    <button class="next" onclick="next(3)">Next</button>
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" id="s3">
+  <div class="card">
+    <h2>Will you be my Valentine? 💌</h2>
+    <button id="yes" onclick="next(4)">Yes 🤍</button>
+    <button id="no" onmouseover="moveNo()">No</button>
+  </div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" id="s4">
+  <div class="card">
+    <h2>Something for You 🎟</h2>
+    <div class="envelope" onclick="openEnvelope(this)">
+      <div class="flap"></div>
+      <div class="envelope-text">Open Me 💌</div>
+    </div>
+
+    <div class="ticket" id="ticket">
+      <h3>Valentine Date 💖</h3>
+      <p>
+        With: You & Me<br>
+        Mood: Soft, cute, us<br>
+        Plan: Flowers, food & laughs
+      </p>
+    </div>
+  </div>
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+let musicStarted = false;
 
-  const text = 
-`I hope you’re doing well and smiling as you read this.
+function next(n) {
+  document.querySelector(".active").classList.remove("active");
+  document.getElementById("s" + n).classList.add("active");
+  startMusic();
+}
 
-It’s been five months with you,
-and it truly feels special.
-
-We hang out,
-we eat,
-we laugh,
-we talk.
-
-We fight sometimes too,
-but even then,
-all I ever want is you.
-
-There’s something I want to ask you…`;
-
-  const letter = document.getElementById("letter");
-  const question = document.getElementById("question");
-  const music = document.getElementById("music");
-
-  let i = 0;
-
-  function type() {
-    if (i < text.length) {
-      letter.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 40);
-    } else {
-      question.style.display = "block";
-    }
-  }
-
-  // start typing
-  type();
-
-  // start music on first click (browser rule)
-  document.body.addEventListener("click", () => {
-    music.play();
-  }, { once: true });
-
-});
-
-function move() {
+function moveNo() {
   const no = document.getElementById("no");
-  no.style.left = (Math.random() * 60 - 30) + "px";
+  no.style.left = (Math.random() * 80 - 40) + "px";
 }
 
-function yes() {
-  document.getElementById("card").innerHTML = `
-    <h1>💖 Happy First Valentine 💖</h1>
-    <p style="text-align:center;font-size:18px;">
-      I’m really glad it’s with you ❤️
-    </p>
-  `;
+function openEnvelope(el) {
+  el.classList.add("open");
+  setTimeout(() => {
+    document.getElementById("ticket").style.display = "block";
+    celebrate();
+  }, 900);
 }
+
+function celebrate() {
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = Math.random() > 0.5 ? "🌸" : "🎉";
+    c.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6000);
+  }
+}
+
+function startMusic() {
+  if (!musicStarted) {
+    document.getElementById("music").play();
+    musicStarted = true;
+  }
+}
+
+/* 🌸 DENSE LILY + ROSE GARDEN */
+setInterval(() => {
+  const f = document.createElement("div");
+  const flowers = ["🌸","🌸","🌸","🌹"];
+  f.className = "flower " + (Math.random() > 0.5 ? "layer1" : "layer2");
+  f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+  f.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 18000);
+}, 350);
 </script>
 
 </body>
