@@ -2,71 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Letter for You ❤️</title>
+<title>For My Love ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(circle at top, #ffd1dc, #f6a6b2);
+  background: linear-gradient(180deg, #fde2e4, #fadadd);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-family: 'Georgia', serif;
   overflow: hidden;
 }
 
-.container {
+.card {
   background: #fff;
-  width: 90%;
   max-width: 520px;
-  padding: 40px;
-  border-radius: 18px;
+  width: 90%;
+  padding: 45px;
+  border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-  animation: fadeIn 1.2s ease;
-  position: relative;
+  animation: fadeIn 1.4s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
   text-align: center;
   font-weight: normal;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 #letter {
   font-size: 17px;
-  line-height: 1.7;
-  min-height: 220px;
+  line-height: 1.8;
   white-space: pre-line;
-}
-
-.fade {
-  animation: fade 1.2s forwards;
-}
-
-@keyframes fade {
-  to { opacity: 0; }
+  min-height: 220px;
 }
 
 .buttons {
   margin-top: 30px;
   text-align: center;
+  display: none;
 }
 
 button {
-  padding: 12px 28px;
-  font-size: 16px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: none;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -92,28 +82,12 @@ button {
   animation: fadeIn 1.2s ease;
 }
 
-.final h2 {
-  font-weight: normal;
-}
-
-.glow {
-  font-size: 60px;
-  animation: glow 1.5s infinite;
-}
-
-@keyframes glow {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-/* floating hearts */
 .heart {
   position: absolute;
   bottom: -10px;
   font-size: 18px;
   opacity: 0.6;
-  animation: float 8s linear infinite;
+  animation: float 9s linear infinite;
 }
 
 @keyframes float {
@@ -125,71 +99,31 @@ button {
 
 <body>
 
-<div class="container" id="card">
-  <h1>Dear Vaishu ❤️</h1>
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_3b4f06e5f4.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+  <h1>Hiee my love ❤️</h1>
   <div id="letter"></div>
 
-  <div class="buttons hidden" id="question">
+  <div class="buttons" id="question">
     <button id="yes" onclick="yes()">Yes 💖</button>
-    <button id="no" onmouseover="escape()">No</button>
+    <button id="no" onmouseover="move()">No</button>
   </div>
 </div>
 
 <script>
-const text = `I don’t know when it happened,
-but somewhere between conversations,
-smiles, and little moments…
+const text = `I hope you’re doing well and smiling as you read this.
 
-you became someone very special to me.
+It’s been five months with you,
+and honestly… it feels special.
 
-You make things feel lighter,
-days feel better,
-and moments feel warmer.
+We hang out,
+we eat,
+we laugh,
+we talk about everything and nothing.
 
-So today, I just wanted to ask you
-something straight from my heart.`;
-
-let i = 0;
-const speed = 40;
-const letter = document.getElementById("letter");
-
-function typeWriter() {
-  if (i < text.length) {
-    letter.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  } else {
-    document.getElementById("question").classList.remove("hidden");
-  }
-}
-
-typeWriter();
-
-function escape() {
-  const no = document.getElementById("no");
-  no.style.left = (Math.random() * 60 - 30) + "px";
-}
-
-function yes() {
-  document.getElementById("card").innerHTML = `
-    <div class="final">
-      <div class="glow">💖</div>
-      <h2>You just made my heart very happy</h2>
-      <p>Happy Valentine’s Day ❤️</p>
-    </div>
-  `;
-}
-
-/* floating hearts */
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "💗";
-  h.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 8000);
-}, 600);
-</script>
-
-</body>
-</html>
+We fight sometimes too —
+but even then,
+all I ever want is yo
