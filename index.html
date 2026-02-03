@@ -2,137 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Vaishu 💖</title>
+<title>A Letter for You ❤️</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   height: 100vh;
+  background: radial-gradient(circle at top, #ffd1dc, #f6a6b2);
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  font-family: 'Comic Sans MS', cursive;
+  justify-content: center;
+  font-family: 'Georgia', serif;
   overflow: hidden;
 }
 
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  width: 320px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+.container {
+  background: #fff;
+  width: 90%;
+  max-width: 520px;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  animation: fadeIn 1.2s ease;
   position: relative;
-  animation: popIn 0.5s ease;
 }
 
-.hidden { display: none; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+#letter {
+  font-size: 17px;
+  line-height: 1.7;
+  min-height: 220px;
+  white-space: pre-line;
+}
+
+.fade {
+  animation: fade 1.2s forwards;
+}
+
+@keyframes fade {
+  to { opacity: 0; }
+}
+
+.buttons {
+  margin-top: 30px;
+  text-align: center;
+}
 
 button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 20px;
+  padding: 12px 28px;
   font-size: 16px;
+  border-radius: 30px;
+  border: none;
   cursor: pointer;
-  margin: 10px;
+  transition: all 0.3s ease;
 }
 
 #yes {
-  background: #ff4d6d;
+  background: #e63946;
   color: white;
+}
+
+#yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(230,57,70,0.4);
 }
 
 #no {
   background: #ddd;
-  position: absolute;
+  margin-left: 15px;
+  position: relative;
 }
 
-@keyframes popIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.final {
+  text-align: center;
+  animation: fadeIn 1.2s ease;
 }
 
-.float {
-  position: absolute;
-  animation: float 6s linear infinite;
-  font-size: 24px;
+.final h2 {
+  font-weight: normal;
 }
 
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 0; }
-  100% { transform: translateY(-10vh); opacity: 1; }
+.glow {
+  font-size: 60px;
+  animation: glow 1.5s infinite;
 }
 
-.big {
-  font-size: 70px;
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
+@keyframes glow {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
+}
+
+/* floating hearts */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  font-size: 18px;
+  opacity: 0.6;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="q1">
-  <h2>Hiee Vaishu 🥺💖</h2>
-  <p>How are you? I hope you’re doing well today 🌸</p>
-  <button onclick="next()">Next 🥰</button>
-</div>
+<div class="container" id="card">
+  <h1>Dear Vaishu ❤️</h1>
+  <div id="letter"></div>
 
-<div class="card hidden" id="q2">
-  <h2>Umm 😳</h2>
-  <p>I want to ask you something important…</p>
-  <button onclick="next()">Okay 🫣</button>
-</div>
-
-<div class="card hidden" id="q3">
-  <h2>Will you be my Valentine? 💘</h2>
-  <button id="yes" onclick="yes()">YES 💖</button>
-  <button id="no" onmouseover="move()">NO 😤</button>
-</div>
-
-<div class="card hidden" id="done">
-  <div class="big">🐱💖🐱</div>
-  <h2>YAYYYYY 🎉</h2>
-  <p>You just made my day 😭❤️</p>
-  <p>Happy Valentine’s Day Vaishu 💕</p>
+  <div class="buttons hidden" id="question">
+    <button id="yes" onclick="yes()">Yes 💖</button>
+    <button id="no" onmouseover="escape()">No</button>
+  </div>
 </div>
 
 <script>
-let step = 1;
+const text = `I don’t know when it happened,
+but somewhere between conversations,
+smiles, and little moments…
 
-function next() {
-  document.getElementById("q" + step).classList.add("hidden");
-  step++;
-  document.getElementById("q" + step).classList.remove("hidden");
+you became someone very special to me.
+
+You make things feel lighter,
+days feel better,
+and moments feel warmer.
+
+So today, I just wanted to ask you
+something straight from my heart.`;
+
+let i = 0;
+const speed = 40;
+const letter = document.getElementById("letter");
+
+function typeWriter() {
+  if (i < text.length) {
+    letter.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  } else {
+    document.getElementById("question").classList.remove("hidden");
+  }
 }
 
-function move() {
+typeWriter();
+
+function escape() {
   const no = document.getElementById("no");
-  no.style.left = Math.random() * 250 + "px";
-  no.style.top = Math.random() * 250 + "px";
+  no.style.left = (Math.random() * 60 - 30) + "px";
 }
 
 function yes() {
-  document.getElementById("q3").classList.add("hidden");
-  document.getElementById("done").classList.remove("hidden");
+  document.getElementById("card").innerHTML = `
+    <div class="final">
+      <div class="glow">💖</div>
+      <h2>You just made my heart very happy</h2>
+      <p>Happy Valentine’s Day ❤️</p>
+    </div>
+  `;
 }
 
-/* floating hearts & cats */
+/* floating hearts */
 setInterval(() => {
-  const el = document.createElement("div");
-  el.className = "float";
-  el.innerText = Math.random() > 0.5 ? "💖" : "🐱";
-  el.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 6000);
-}, 400);
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}, 600);
 </script>
 
 </body>
