@@ -2,254 +2,201 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>For You 💌</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #f7e6ec, #fdeff4);
-  font-family: "Georgia", serif;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#ffe6ee,#fff5f8);
+  text-align: center;
   overflow: hidden;
 }
 
 .slide {
   display: none;
   height: 100vh;
-  width: 100%;
-  padding: 40px;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  flex-direction: column;
+  padding: 30px;
 }
 
-.active {
-  display: flex;
-}
+.active { display: flex; }
 
 .card {
   background: white;
-  max-width: 540px;
+  padding: 35px;
+  max-width: 520px;
   width: 90%;
-  padding: 42px;
-  border-radius: 22px;
-  box-shadow: 0 35px 70px rgba(0,0,0,0.25);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
   animation: fadeIn 1s ease;
-  position: relative;
-  z-index: 2;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
 }
 
 button {
-  padding: 12px 32px;
-  border-radius: 30px;
+  margin-top: 25px;
+  padding: 12px 30px;
   border: none;
-  font-size: 16px;
+  border-radius: 25px;
   cursor: pointer;
-  margin-top: 28px;
+  font-size: 16px;
 }
 
-.next, #yes {
-  background: #d6336c;
+.next {
+  background: #e63946;
+  color: white;
+}
+
+#yes {
+  background: #e63946;
   color: white;
 }
 
 #no {
-  background: #eee;
-  margin-left: 15px;
+  background: #ddd;
   position: relative;
 }
 
-/* 🌸 FLOWER GARDEN (LILIES + ROSES) */
-.flower {
-  position: absolute;
-  font-size: 26px;
-  opacity: 0.85;
-  animation: floatUp linear infinite;
-}
-
-.layer1 { animation-duration: 14s; font-size: 28px; }
-.layer2 { animation-duration: 18s; font-size: 22px; opacity: 0.6; }
-
-@keyframes floatUp {
-  from { transform: translateY(120vh); }
-  to { transform: translateY(-140vh); }
-}
-
-/* ✉️ ENVELOPE */
+/* Envelope */
 .envelope {
-  width: 280px;
-  height: 180px;
-  background: #f3c8d6;
+  width: 260px;
+  height: 160px;
+  background: #f5b6c8;
   border-radius: 12px;
-  position: relative;
-  cursor: pointer;
   margin: auto;
-  overflow: hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-size:18px;
 }
 
-.flap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 50%;
-  background: #eab4c7;
-  transform-origin: top;
-  transition: transform 1s ease;
-}
-
-.envelope.open .flap {
-  transform: rotateX(160deg);
-}
-
-.envelope-text {
-  position: absolute;
-  bottom: 18px;
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
+/* Coupon */
+.coupon {
+  display:none;
+  margin-top:20px;
+  padding:20px;
+  border:2px dashed #e63946;
+  border-radius:15px;
+  background:#fff0f5;
 }
 
 .ticket {
-  display: none;
-  background: white;
-  padding: 28px;
-  border-radius: 18px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-  margin-top: 25px;
-  animation: fadeIn 1s ease;
+  margin:10px;
+  padding:15px;
+  border-radius:12px;
+  background:white;
+  font-weight:bold;
 }
 
-/* 🎉 CELEBRATION */
-.confetti {
-  position: absolute;
-  font-size: 22px;
-  animation: fall 6s linear infinite;
+/* Flowers floating */
+.flower {
+  position:absolute;
+  font-size:24px;
+  animation: floatUp 10s linear infinite;
+  opacity:0.7;
 }
 
-@keyframes fall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(120vh); }
+@keyframes floatUp {
+  from {transform:translateY(110vh);}
+  to {transform:translateY(-130vh);}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6b1b88f2df.mp3" type="audio/mpeg">
-</audio>
-
-<!-- SLIDE 1 -->
+<!-- Slide 1 Letter -->
 <div class="slide active" id="s1">
   <div class="card">
-    <h2>Hi my love 🤍</h2>
+    <h2>💌 A Small Letter</h2>
     <p>
-      I hope you’re doing well.<br><br>
-      We hang out, eat, laugh, and sometimes fight too —
-      but through everything, all I want is you.
+      Hiee Jannu 🤍<br><br>
+      This is our First Valentine together.<br>
+      I want to make it special in every possible way i can.<br><br>
+      Thank you for Everything ,Sorry to Annoy you sometimes I Love you sweetu I Hope you'll like it.
     </p>
-    <button class="next" onclick="next(2)">Next</button>
+    <button class="next" onclick="go(2)">Next</button>
   </div>
 </div>
 
-<!-- SLIDE 2 -->
+<!-- Slide 2 Flowers -->
 <div class="slide" id="s2">
   <div class="card">
-    <h2>A Little Garden for You 🌸🌹</h2>
+    <h2>🌸 For You</h2>
     <p>
-      Lilies and roses,<br>
-      soft, calm, and full of love.
+      A bouquet of lilies and roses,<br>
+      because you deserve all the flowers.
     </p>
-    <button class="next" onclick="next(3)">Next</button>
+    <button class="next" onclick="go(3)">Next</button>
   </div>
 </div>
 
-<!-- SLIDE 3 -->
+<!-- Slide 3 Question -->
 <div class="slide" id="s3">
   <div class="card">
-    <h2>Will you be my Valentine? 💌</h2>
-    <button id="yes" onclick="next(4)">Yes 🤍</button>
-    <button id="no" onmouseover="moveNo()">No</button>
+    <h2>Will you be my Valentine? 💖</h2>
+    <button id="yes" onclick="go(4)">YES 🤍</button>
+    <button id="no" onclick="moveNo()" onmouseover="moveNo()">NO</button>
   </div>
 </div>
 
-<!-- SLIDE 4 -->
+<!-- Slide 4 Coupon -->
 <div class="slide" id="s4">
   <div class="card">
-    <h2>Something for You 🎟</h2>
-    <div class="envelope" onclick="openEnvelope(this)">
-      <div class="flap"></div>
-      <div class="envelope-text">Open Me 💌</div>
+    <h2>Yayyy 🎉 Happy Valentine Day Baby!💍 💖</h2>
+    <p>Now open your surprise coupon 💌</p>
+
+    <div class="envelope" onclick="openCoupon()">
+      Open Me 💌
     </div>
 
-    <div class="ticket" id="ticket">
-      <h3>Valentine Date 💖</h3>
-      <p>
-        With: You & Me<br>
-        Mood: Soft, cute, us<br>
-        Plan: Flowers, food & laughs
+    <div class="coupon" id="coupon">
+      <h3>🎟 Valentine Date Ticket 🎟</h3>
+
+      <div class="ticket">💋 Free Kisses (Unlimited)</div>
+      <div class="ticket">🤗 Free Hugs (24×7)</div>
+      <div class="ticket">🍫 Yummy Food Date</div>
+
+      <p style="margin-top:15px;">
+        Only valid with YOU ❤️
       </p>
     </div>
   </div>
 </div>
 
 <script>
-let musicStarted = false;
-
-function next(n) {
+function go(n){
   document.querySelector(".active").classList.remove("active");
-  document.getElementById("s" + n).classList.add("active");
-  startMusic();
+  document.getElementById("s"+n).classList.add("active");
 }
 
-function moveNo() {
-  const no = document.getElementById("no");
-  no.style.left = (Math.random() * 80 - 40) + "px";
+function moveNo(){
+  let no = document.getElementById("no");
+  no.style.left = Math.random()*200 - 100 + "px";
+  no.style.top  = Math.random()*100 - 50 + "px";
 }
 
-function openEnvelope(el) {
-  el.classList.add("open");
-  setTimeout(() => {
-    document.getElementById("ticket").style.display = "block";
-    celebrate();
-  }, 900);
+function openCoupon(){
+  document.getElementById("coupon").style.display="block";
 }
 
-function celebrate() {
-  for (let i = 0; i < 40; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.innerText = Math.random() > 0.5 ? "🌸" : "🎉";
-    c.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 6000);
-  }
-}
-
-function startMusic() {
-  if (!musicStarted) {
-    document.getElementById("music").play();
-    musicStarted = true;
-  }
-}
-
-/* 🌸 DENSE LILY + ROSE GARDEN */
-setInterval(() => {
-  const f = document.createElement("div");
-  const flowers = ["🌸","🌸","🌸","🌹"];
-  f.className = "flower " + (Math.random() > 0.5 ? "layer1" : "layer2");
-  f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-  f.style.left = Math.random() * 100 + "vw";
+/* Lily + Rose floating */
+setInterval(()=>{
+  let f=document.createElement("div");
+  f.className="flower";
+  let flowers=["🌸","🌸","🌹"];
+  f.innerText=flowers[Math.floor(Math.random()*flowers.length)];
+  f.style.left=Math.random()*100+"vw";
   document.body.appendChild(f);
-  setTimeout(() => f.remove(), 18000);
-}, 350);
+  setTimeout(()=>f.remove(),10000);
+},600);
 </script>
 
 </body>
